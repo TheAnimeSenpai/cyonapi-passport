@@ -1,5 +1,5 @@
 {
-  "name": "cyonapi",
+  "name": "sails-passport-auth",
   "private": true,
   "version": "0.0.0",
   "description": "a Sails application",
