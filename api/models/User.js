@@ -18,7 +18,7 @@ module.exports = {
   },
 
   attributes: {
-      userid : {
+      userId : {
           type : 'string',
           required : true,
           primaryKey: true,

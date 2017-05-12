@@ -3,18 +3,20 @@ var localStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcryptjs');
 
 passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    done(null, user.userId);
+    //done(null, user);
 });
 
-passport.deserializeUser(function (id, done) {
-    User.findOne({ id : id }, function (err, user) {
+passport.deserializeUser(function (userId, done) {
+    User.findOne({ userId : userId }, function (err, user) {
         done(err, user);
     });
+    //done(null, user);
 });
 
 var oAuthCallback = function (token, tokenSecret, profile, done) {
     User.findOne({ uid : profile.id, provider : profile.provider}, function (err, user) {
-        if(user) { return done(null, user); }
+        if(user) { sails.log(profile); return done(null, user); }
         else {
             var data = {
                 provider : profile.provider,
@@ -43,9 +45,9 @@ var oAuthCallback = function (token, tokenSecret, profile, done) {
             });
         }
     });
-}
+};
 
-passport.use(new localStrategy({ usernameField : 'email', passwordField : 'password' }, function () {
+passport.use(new localStrategy({ usernameField : 'email', passwordField : 'password' }, function (email, password, done) {
     User.findOne({ email : email }, function (err, user) {
         if(err) { return done(err); }
         if(!user) {
@@ -58,7 +60,7 @@ passport.use(new localStrategy({ usernameField : 'email', passwordField : 'passw
             var returnUser = {
                 username : user.username,
                 createdAt : user.createdAt,
-                id : user.id
+                userId : user.userId
             };
 
             return done(null, returnUser, { message : 'Logged in Successfully' });

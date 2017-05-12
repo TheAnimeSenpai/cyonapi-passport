@@ -10,8 +10,25 @@ var _ = require('lodash');
 
 module.exports = {
 
-    getUser : function(req, res) {
+    getUserProfile : function(req, res) {
+        var userId = req.param('userId');
 
+        User.findOne({ userId : userId }).exec(function(err, user) {
+            if(err) return res.negotiate(err);
+            if(!user) return re.notFound();
+
+            return res.json({
+                userid : user.userid,
+                surname : user.surname,
+                firstname : user.firstname,
+                username : user.username,
+                mobile : user.mobile,
+                email : user.email,
+                dateOfBirthMonth : user.dateOfBirthMonth,
+                dateOfBirthDay : user.dateOfBirthDay,
+                imageUrl : user.imageUrl
+            })
+        })
     },
 	
     uploadImage : function(req, res) {

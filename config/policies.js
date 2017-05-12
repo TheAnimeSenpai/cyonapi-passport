@@ -50,7 +50,7 @@ module.exports.policies = {
 	// }
 
   AuthController : {
-    'post login' : true,
+    'put login' : true,
     'get logout' : 'isAuthenticated'
   },
 
@@ -59,6 +59,7 @@ module.exports.policies = {
   // },
 
   UserController : {
+    getUserProfile : 'isAuthenticated',
     createUser : ['honeyPot', 'termsAndConditions']
   },
 

@@ -39,7 +39,7 @@ module.exports.routes = {
   'PUT /api/login': 'AuthController.login',
   'GET /api/activateAccount' : 'AuthController.activate',
   'PUT /api/signup': 'AuthController.signup',
-  'PUT /api/logout': 'AuthController.logout',
+  'GET /api/logout': 'AuthController.logout',
 
   /***************************************************************************
   *                                                                          *
