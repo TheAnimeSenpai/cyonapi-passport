@@ -56,14 +56,19 @@ module.exports.connections = {
   * Run: npm install sails-mongo                                             *
   *                                                                          *
   ***************************************************************************/
-  // someMongodbServer: {
-  //   adapter: 'sails-mongo',
-  //   host: 'localhost',
-  //   port: 27017,
+  someMongodbServer: {
+     adapter: 'sails-mongo',
+     host: 'localhost',
+     port: 27017,
   //   user: 'username', //optional
   //   password: 'password', //optional
-  //   database: 'your_mongo_db_name_here' //optional
-  // },
+     database: 'cyondb2' //optional
+   },
+
+   liveMongodbServer : {
+     adapter: 'sails-mongo',
+     url : 'mongodb://francis:Shinigamisama88@ds033484.mlab.com:33484/cyondb',
+   },
 
   /***************************************************************************
   *                                                                          *
