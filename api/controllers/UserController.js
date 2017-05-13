@@ -15,7 +15,7 @@ module.exports = {
 
         User.findOne({ userId : userId }).exec(function(err, user) {
             if(err) return res.negotiate(err);
-            if(!user) return re.notFound();
+            if(!user) return res.notFound();
 
             return res.json({
                 userid : user.userid,
